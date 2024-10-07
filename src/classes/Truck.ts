@@ -74,7 +74,7 @@ class Truck extends Vehicle implements AbleToTow {
       );
 
 
-      }
+      };
 
 // DONE: Implement the tow method from the AbleToTow interface
     

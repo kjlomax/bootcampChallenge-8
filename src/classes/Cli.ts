@@ -187,11 +187,7 @@ class Cli {
           name: 'currentSpeed',
           message: 'Enter Current Speed',
         },
-        {
-          type: 'input',
-          name: 'vin',
-          message: 'Enter VIN',
-        },
+        
         {
           type: 'input',
           name: 'color',
@@ -272,11 +268,7 @@ class Cli {
           name: 'currentSpeed',
           message: 'Enter Current Speed',
         },
-        {
-          type: 'input',
-          name: 'vin',
-          message: 'Enter VIN',
-        },
+        
         {
           type: 'input',
           name: 'color',
@@ -357,14 +349,16 @@ class Cli {
 
   // method to find a vehicle to tow
   // TODO: add a parameter to accept a truck object
-  findVehicleToTow(vehicle: Truck): void {
+  findVehicleToTow(truck: Truck): void {
     inquirer
       .prompt([
         {
           type: 'list',
           name: 'vehicleToTow',
           message: 'Select a vehicle to tow',
-          choices: this.vehicles.map((vehicle) => {
+          choices: this.vehicles.filter((vehicle) => {
+            return !(vehicle instanceof Truck);
+          }).map((vehicle) => {
             return {
               name: `${vehicle.vin} -- ${vehicle.make} ${vehicle.model}`,
               value: vehicle,
@@ -376,12 +370,12 @@ class Cli {
         // DONE: check if the selected vehicle is the truck
         if (answers.vehicleToTow === Truck) {
           console.log(`The truck cannot tow itself`);
-          answers.vehicleToTow.performActions();
+          this.performActions();
 
         }
         else {
-          answers.vehicleToTow.tow();
-          answers.vehicleToTow.performActions();
+          truck.tow(answers.vehicleToTow);
+          this.performActions();
         }
         // DONE: if it is, log that the truck cannot tow itself then perform actions on the truck to allow the user to select another action
         // DONE: if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
@@ -482,8 +476,8 @@ class Cli {
           else if (answers.action === 'Tow') {
           for (let i = 0; i < this.vehicles.length; i++) {
             if (this.vehicles[i] instanceof Truck && this.vehicles[i].vin === this.selectedVehicleVin) {
-              this.findVehicleToTow(this.vehicles[i] as Truck);
-              return;
+              return this.findVehicleToTow(this.vehicles[i] as Truck);
+              
             }
           }
         }

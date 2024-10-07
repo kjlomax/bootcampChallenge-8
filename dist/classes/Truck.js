@@ -44,6 +44,7 @@ class Truck extends Vehicle {
         console.log(`Wheel 3: ${this.wheels[2].getDiameter} inch with a ${this.wheels[2].getTireBrand} tire`);
         console.log(`Wheel 4: ${this.wheels[3].getDiameter} inch with a ${this.wheels[3].getTireBrand} tire`);
     }
+    ;
     // DONE: Implement the tow method from the AbleToTow interface
     //  Get the make an model of the vehicle if it exists
     //  Check if the vehicle's weight is less than or equal to the truck's towing capacity
