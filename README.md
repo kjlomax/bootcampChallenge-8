@@ -25,11 +25,10 @@
 
   ## Usage
 
-  When you answer a prompt with the following input:
-  > 
+  When you start the application you can add or select an existing vehicle.
+  Then you can perform actions on that vehicle.
 
-  it will add your answer to the README file.
-  > 
+  ![Video Example](https://drive.google.com/file/d/13TLmQayFOvRQAM1ISvM8aaCHr4M7OCcm/view?usp=sharing)
 
   ## License
 
